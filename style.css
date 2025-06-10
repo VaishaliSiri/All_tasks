@@ -1,0 +1,50 @@
+body{
+    background-color: rgb(248, 244, 192);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+table,td{
+    border: 1px solid black;
+}
+
+#scroll{
+    overflow: auto;
+}
+
+
+h2{
+    background-color: rgb(45, 167, 45);
+    color: white;
+    padding: 10px;
+    
+}
+.header{
+    background-color: rgb(139, 16, 16);
+    text-align: center;
+    color: rgb(248, 244, 192);
+    letter-spacing: 20px;
+    font-style: italic;
+    font-family: sans-serif;
+    /* border-bottom: 20px solid red; */
+}
+
+.bullet{
+    color: brown;
+    font-style: italic;
+}
+.tablehai{
+    color: gray;
+}
+.tablefont{
+    color: black;
+    background-color: rgb(214, 214, 214);
+}
+.zeuslink{
+    text-decoration: none;
+}
+b{
+    font-style: italic;
+}
+.heading{
+    border-bottom: 15px solid red;
+}
