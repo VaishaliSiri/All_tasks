@@ -46,5 +46,14 @@ b{
     font-style: italic;
 }
 .heading{
-    border-bottom: 15px solid red;
+    border-bottom: 15px solid #CC0005;
+}
+.img{
+    border: 1px dashed gray;
+}
+
+.error {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 4px;
 }

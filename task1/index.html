@@ -33,7 +33,8 @@
 
         <a href="https://www.zeuslearning.com/" class="zeuslink">This link will open a zeuslearning.com link in new tab</a>
         <h2>On click on the following image navigate to Google.com</h2> 
-        <a href="https://www.google.com/"> <img src="image.png" alt=""></a>
+       <a  href="https://www.google.com/"> <img class="img" src="image.png" alt=""></a>
+        
 
        <div class="tablehai">
          <h3>Some random table</h3>
@@ -62,18 +63,26 @@
         <h3>Some random form</h3>
        </div>
         <p><b>Note:</b>It looks the part,but won't do a anything.</p>
+       
         <form name="Form" onsubmit="return clicked()">
             <label>Name:</label><br><br>
-            <input type="text" name="name" placeholder="Your name" id="a"><br><br>
+            <input type="text" name="name" placeholder="Your name" id="a" autofocus><br>
+            <div class="error" id="error-name"></div><br>
+
             <label>Comments:</label><br><br>
-            <textarea id="b" name="comment" placeholder="Your comments"></textarea><br>
+            <textarea rows="10" id="b" name="comment" placeholder="Your comments"></textarea><br>
+            <div class="error" id="error-comment"></div><br>
+
             <label>Are you:</label><br><br>
-            <input type="radio" name="gender" value="HTML">
-            <label>Male</label><br><br>
-            <input type="radio" id="css" name="gender" value="CSS">
-            <label>Female</label><br><br>
+            <input type="radio" name="gender" value="Male">
+            <label>Male</label><br>
+            <input type="radio" name="gender" value="Female">
+            <label>Female</label><br>
+            <div class="error" id="error-gender"></div><br>
+
             <input type="submit" value="Submit Query">
         </form>
+
     </div>
     <script src="script.js"></script>
 
