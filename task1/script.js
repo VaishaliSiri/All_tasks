@@ -36,7 +36,8 @@
 
 // 
 
-function clicked() {
+function clicked(event) {
+      if (event) event.preventDefault();
     const nameInput = document.getElementById('a');
     const commentInput = document.getElementById('b');
     const gender = document.querySelector('input[name="gender"]:checked');
@@ -65,6 +66,10 @@ function clicked() {
 
     if (!gender) {
         document.getElementById('error-gender').innerText = 'Please select your gender.';
+        if (valid && genderInputs.length > 0) {
+        // Add a short delay to allow focus to be applied correctly
+        setTimeout(() => genderInputs[0].focus(), 0);
+    }
         valid = false;
     }
 

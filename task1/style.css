@@ -13,10 +13,10 @@ table,td{
 
 
 h2{
-    background-color: rgb(45, 167, 45);
+    background-color:#329902;
     color: white;
-    padding: 10px;
-    
+    /* padding: 5px; */
+    padding-left: 15px;
 }
 .header{
     background-color: rgb(139, 16, 16);
@@ -29,7 +29,7 @@ h2{
 }
 
 .bullet{
-    color: brown;
+    color: #9B0508;
     font-style: italic;
 }
 .tablehai{

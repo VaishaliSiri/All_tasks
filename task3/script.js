@@ -18,12 +18,13 @@ function array_cal(n, arr) {
 let myArr = [1];
 function solve() {
 
-    for (let i = 1; i <= 1000; i++) {
+    for (let i = 1; i <= 100; i++) {
         myArr = array_cal(i, myArr);
-        // console.log(myArr)
+        
     }
-    const res = myArr.join('');
-    return res;
+    // const res = myArr;
+    
+    return myArr.join('');
 }
 
 
