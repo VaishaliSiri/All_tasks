@@ -1,0 +1,127 @@
+.dash{
+    position: absolute;
+    display: flex;
+    gap: 32px;
+    top: 0px;
+    padding-top : 19px;
+    right: 24px;
+    justify-content: end;
+    font-size: 14px;
+    align-items: center;
+}
+
+.dash > a{
+    text-decoration: none;
+    color: #3FD28B;
+}
+.choice{
+    left: 0px;
+    padding-left: 24px;
+    right: 0px;
+    padding-right: 24px;
+    padding-top: 24px;
+}
+.choose{
+    display: flex;
+    height: 64px;
+    background-color: #8DDC97;
+    border-radius: 2px;
+}
+
+.classes,.course{
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.course > img{
+    padding-left: 386px;
+}
+
+.course_name{
+    display: flex;
+    padding-left: 24px;
+}
+
+.sort{
+    display: flex;
+    right: 0px;
+    justify-content: end;
+    padding-right: 24px;
+    align-items: center;
+}
+
+.details{
+    
+    padding-top: 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    width: 946px;
+    height: 517px;
+    gap: 25px;
+}
+
+.grid-item{
+    position: relative;
+    background-color: white;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-up{
+    display: flex;
+    border-bottom: 1px solid #000000;
+    padding-right: 24px;
+    padding-bottom: 12px;
+}
+
+.center{
+    display: flex;
+    justify-content: center;
+}
+
+.ur_options{
+    display: flex;
+    padding-left: 24px;
+    gap: 90px;
+    /* justify-content: center; */
+}
+
+.grade,.chapter,.join_class,.no_students{
+    display: flex;
+    margin-left: 16px;
+}
+
+.join_class{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 0.01px solid #000000;
+    padding-right: 16px;
+}
+
+
+
+.card-down{
+    display: flex;
+    width: 100%;
+    padding-top: 18px;
+}
+
+.dono-div{
+    padding: 24px 12px 11px 24px;
+}
+
+.topic{
+    margin-left: 16px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.fav-icon{
+    position: absolute;
+    right: 16px;
+}

@@ -29,11 +29,14 @@ body{
     background-color: white;
     position: absolute;
     top: 108px;
-    left: 700px;
+    /* left: 700px; */
     border-top: 4px solid #3AC7EC;
     padding-left: 32px;
 }
-
+.middle{
+    display: flex;
+    justify-content: center;
+}
 hr{
     width: 90%;
     background-color: #666666;
@@ -156,12 +159,60 @@ input::placeholder {
     background-color: #3FD28B;
     border: none;
     font-family: 'QuickSand',sans-serif;
-    
+    font-size: 14px;
 }
 
 .btn_container{
     display: flex;
     justify-content: center;
     padding-top: 34px;
-    
 }
+
+.links{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    bottom: 0px;
+    position: fixed;
+    padding-bottom: 56px;
+    width: 100%;
+    color: #0000001F;
+}
+
+.links > a{
+    color: #1F7A54;
+    text-decoration: none;
+    font-family: 'QuickSand',sans-serif;
+}
+
+.end{
+    height: 40px;
+    display: flex;
+    background-color: #E0E1E1;
+    /* padding-top: 740px; */
+    color: #616161;
+    justify-content: center;
+    /* gap: 10px; */
+    align-items: center;
+    bottom: 0px;
+    position: fixed;
+    width:100%; 
+    font-size: 12px;
+}
+
+.preview{
+    cursor: pointer;
+}
+
+input::-ms-reveal,
+    input::-ms-clear {
+        display: none;
+    }
+
+.rem{
+    font-size: 16px;
+    font-weight: 500;
+    color: #222222;
+    margin-left: 5px;
+}  
+

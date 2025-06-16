@@ -13,17 +13,21 @@
             <img class="img1header" src="./quantum screen assets/header pattern image.png" alt="">
             <img src="./quantum screen assets/icons/logo used in header.svg" alt="" class="overlay">
         </div>
+        <div class="middle">
+
+        
         <div class="content">
             <div class="login">
                 <img src="./quantum screen assets/icons/back.svg" alt="">
                 <p>Log in with Quantum</p>
             </div>
             <div class="district">
-                <img src="./quantum screen assets/icons/radio-button-on.svg" class="img1" alt="">
+                <img id="myImage" onclick="changeImage('district')" src="./quantum screen assets/icons/radio-button-on.svg" class="img1" alt="">
                 <p>District</p>
-                <img class="img1" src="./quantum screen assets/icons/radio-button-off.svg" alt="">
+                <img id="myImage1" onclick="changeImage('independent')" class="img1" src="./quantum screen assets/icons/radio-button-off.svg" alt="">
                 <p>Independent School</p>
             </div>
+
             <p style="height:15px;font-size: small;color: #666666; padding-top: 30px;">State*</p>
             <div class="arrow">
                 <select id="state" name="state">
@@ -44,19 +48,35 @@
             </div>
             <div class="pass_cont">
                <div class="for_pass">
-                    <input class="input2" type="text" placeholder="Password*">
-                    <img class="preview" src="./quantum screen assets/icons/preview.svg" alt="">
+                    <input class="input2" id="showPass" type="password" placeholder="Password*">
+                    <img class="preview"  onclick="showPassword()" src="./quantum screen assets/icons/preview.svg" alt="">
                </div>  
                 <div class="forget_pass"><a class="forget_username" href="">FORGET PASSWORD?</a></div>   
             </div>
             <div class="remember">
-                <img src="./quantum screen assets/icons/checkbox-checked.svg" alt="">
-                <label for="">Remember Me</label>
+                <img id="no_remember" onclick="remember()" src="./quantum screen assets/icons/checkbox-checked.svg" alt="">
+                <label class="rem" for="">Remember Me</label>
             </div>
-            <div class="btn_container"> <button class="btn">Log In</button></div>
+            <div class="btn_container"> <button class="btn">LOG IN</button></div>
            
         </div>
-        <div class="footer"></div>
+        </div>
+         <div class="links">
+            <a href="#">About</a>
+            <p>|</p>
+            <a href="#">Contact Us</a>
+        </div>
+
+        <!-- <div class="footer">   -->
+            <div class="end">
+                <img src="./quantum screen assets/icons/logo used in footer.svg" alt="">
+                <p style="color: #0000001F;margin-left: 16px; margin-right: 16px;">|</p>
+                <p style="margin-right: 8px;">Copyright © 2020-2021 </p>
+                <p style="margin-right: 11px;"><b>Zeus Systems Pvt. Ltd.</b></p>
+                <p>All rights reserved.</p>
+            </div>
+        <!-- </div> -->
     </div>
+    <script src="script.js"></script>
 </body>
 </html>
