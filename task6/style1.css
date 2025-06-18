@@ -404,6 +404,7 @@
 
 .announcement-card {
   overflow-y: auto;
+  max-height: 582px;
 }
 
 .announcement-item {
@@ -446,21 +447,28 @@
 
 .actions {
   display: flex;
-  justify-content: space-around;
-  padding: 10px;
-  border-top: 1px solid #eee;
+  /* justify-content: space-around; */
+  /* padding: 10px; */
+  border-top: 1px solid #ccc;
   background-color: #f9f9f9;
   height: 44px;
   font-size: 14px;
   font-family: 'QuickSand',sans-serif;
+  /* width: 100%; */
 }
 
 .actions button {
+  flex: 1;
   background: none;
   border: none;
   color: #04AA6D;
   cursor: pointer;
   font-weight: 500;
+}
+
+.actions button:first-child{
+  
+  border-right: 1px solid #ccc;
 }
 
 .attachments {

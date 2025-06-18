@@ -236,12 +236,10 @@ function toggleDropdown(header) {
   const arrowImg = header.querySelector('.arrow1 img');
   const isVisible = items.style.display === "block";
 
-  // Collapse all dropdowns
   document.querySelectorAll('.dropdown-items').forEach(item => item.style.display = "none");
   document.querySelectorAll('.arrow1 img').forEach(img => img.src = "./quantum screen assets/icons/down-arrow.svg");
   document.querySelectorAll('.dropdown').forEach(drop => drop.classList.remove('active-dropdown'));
 
-  // Expand clicked one
   if (!isVisible) {
     items.style.display = "block";
     arrowImg.src = "./quantum screen assets/icons/up-arrow.svg";
@@ -301,6 +299,7 @@ const announcements = [
     pa: 'Wilson Kumar',
     title: 'No classes will be held on 21st Nov',
     attachments: '2 files are attached',
+    course: '',
     time: '15-Sep-2018 at 07:21 pm',
     status: 'checked'
   },
@@ -308,13 +307,15 @@ const announcements = [
     pa: 'Samson White',
     title: 'Guest lecture on Geometry on 20th September',
     attachments: '2 files are attached',
+    course: '',
     time: '15-Sep-2018 at 07:21 pm',
     status: 'unchecked'
   },
   {
     pa: 'Wilson Kumar',
     title: 'Additional course materials available on request',
-    attachments: 'Course: Mathematics 101',
+    attachments: '',
+    course: 'Mathematics 101',
     time: '15-Sep-2018 at 07:21 pm',
     status: 'checked'
   },
@@ -322,13 +323,15 @@ const announcements = [
     pa: 'Wilson Kumar',
     title: 'No classes will be held on 25th Dec',
     attachments: '',
+    course: '',
     time: '15-Sep-2018 at 07:21 pm',
     status: 'unchecked'
   },
   {
     pa: 'Wilson Kumar',
     title: 'Additional course materials available on request',
-    attachments: 'Course: Mathematics 101',
+    attachments: '',
+    course: 'Mathematics 101',
     time: '15-Sep-2018 at 07:21 pm',
     status: 'unchecked'
   },
@@ -336,10 +339,14 @@ const announcements = [
     pa: 'Wilson Kumar',
     title: 'No classes will be held on 25th Dec',
     attachments: '',
+    course: 'Physics 201',
     time: '15-Sep-2018 at 07:21 pm',
     status: 'checked'
-  },
+  }
 ];
+
+
+
 
 const announcementIcon = document.querySelectorAll('.icon-container img')[1]; 
 const announcementDropdown = document.getElementById('announcementDropdown');
@@ -351,6 +358,8 @@ announcementIcon.addEventListener('click', () => {
   announcementIcon.style.filter = isOpen ? 'none' : 'brightness(0) invert(1)';
 });
 
+
+
 function renderAnnouncements() {
   announcementCard.innerHTML = '';
 
@@ -361,6 +370,10 @@ function renderAnnouncements() {
       : './quantum screen assets/icons/unread-msg.svg';
 
     const backgroundColor = isRead ? '#ffffff' : '#FFF7D6';
+
+    const courseInfo = item.course
+      ? `<div class="course-name" style="font-size: 13px; color: #444;">Course: ${item.course}</div>`
+      : '';
 
     const attachmentAndTime = `
       <div class="attachment-time" style="display: flex; justify-content: space-between; align-items: center; color: #555; margin-top: 8px;">
@@ -380,7 +393,8 @@ function renderAnnouncements() {
           <span>PA: ${item.pa}</span>
           <img class="icon-status" src="${icon}" alt="status-icon" style="width: 18px; height: 18px;">
         </div>
-        <div class="announcement-title" style="font-weight: 600; margin: 8px 0;">${item.title}</div>
+        <div class="announcement-title" style="font-weight: 600; margin: 8px 0">${item.title}</div>
+        ${courseInfo}
         ${attachmentAndTime}
       </div>
     `;
@@ -388,6 +402,104 @@ function renderAnnouncements() {
     announcementCard.innerHTML += announcementItem;
   });
 }
-
-
 renderAnnouncements();
+
+const alerts = [
+  {
+    content: 'License for Introduction to Algebra has been assigned to your school',
+    std: '',
+    course: '',
+    time: '15-Sep-2018 at 07:21 pm',
+    status: 'unchecked'
+  },
+  {
+    content: 'Lesson 3 Practice Worksheet overdue for Amy Santiago',
+    std: '',
+    course: 'Advanced Mathematics',
+    time: '15-Sep-2018 at 07:21 pm',
+    status: 'checked'
+  },
+  {
+    content: '23 new students created',
+    std: '',
+    course: '',
+    time: '14-Sep-2018 at 01:21 pm',
+    status: 'checked'
+  },
+  {
+    content: '15 submissions ready for evaluation',
+    std: 'Basics of Algebra',
+    course: '',
+    time: '15-Sep-2018 at 07:21 pm',
+    status: 'unchecked'
+  },
+  {
+    content: 'License for Basic Concepts in Geometry has been assigned to your... school',
+    std: '',
+    course: '',
+    time: '15-Sep-2018 at 07:21 pm',
+    status: 'unchecked'
+  },
+  {
+    content: 'Lesson 3 Practice Worksheet overdue for Sam Diego',
+    std: 'Advanced Mathematics',
+    course: '',
+    time: '15-Sep-2018 at 07:21 pm',
+    status: 'checked'
+  },
+  {
+    content: 'Lesson 3 Practice Worksheet overdue for Sam Diego',
+    std: 'Advanced Mathematics',
+    course: '',
+    time: '15-Sep-2018 at 07:21 pm',
+    status: 'checked'
+  }
+];
+
+const announcementIcon1 = document.querySelectorAll('.icon-container img')[0]; 
+const announcementDropdown1 = document.getElementById('announcementDropdown1');
+const announcementCard1 = document.getElementById('announcementCard1');
+
+announcementIcon1.addEventListener('click', () => {
+  const isOpen = announcementDropdown1.style.display === 'block';
+  announcementDropdown1.style.display = isOpen ? 'none' : 'block';
+  announcementIcon1.style.filter = isOpen ? 'none' : 'brightness(0) invert(1)';
+});
+
+function renderAlerts() {
+  announcementCard1.innerHTML = '';
+
+  alerts.forEach(item1 => {
+    const isRead1 = item1.status === 'checked';
+    const icon1 = isRead1
+      ? './quantum screen assets/icons/read-msg.svg'
+      : './quantum screen assets/icons/unread-msg.svg';
+
+    const backgroundColor1 = isRead1 ? '#ffffff' : '#FFF7D6';
+
+    const courseInfo1 = item1.course
+      ? `<div class="course-name" style="font-size: 13px; color: #444;">Course: ${item1.course}</div>`
+      : item1.std
+      ? `<div class="course-name" style="font-size: 13px; color: #444;">Course: ${item1.std}</div>`
+      : '';
+
+    const alertItem = `
+      <div class="announcement-item" style="background-color: ${backgroundColor1};">
+        <div class="pa-name" style="display: flex; justify-content: space-between; align-items: center;">
+          <span>${item1.content}</span>
+          <img class="icon-status" src="${icon1}" alt="status-icon" style="width: 18px; height: 18px;">
+        </div>
+        ${courseInfo1}
+        <div class="attachment-time" style="display: flex; justify-content: flex-end; color: #888; font-size: 12px; margin-top: 8px;">
+          ${item1.time}
+        </div>
+      </div>
+    `;
+
+    announcementCard1.innerHTML += alertItem;
+  });
+}
+
+
+
+renderAlerts();
