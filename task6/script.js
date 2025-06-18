@@ -296,3 +296,98 @@ window.addEventListener("DOMContentLoaded", function () {
 });
 
 
+const announcements = [
+  {
+    pa: 'Wilson Kumar',
+    title: 'No classes will be held on 21st Nov',
+    attachments: '2 files are attached',
+    time: '15-Sep-2018 at 07:21 pm',
+    status: 'checked'
+  },
+  {
+    pa: 'Samson White',
+    title: 'Guest lecture on Geometry on 20th September',
+    attachments: '2 files are attached',
+    time: '15-Sep-2018 at 07:21 pm',
+    status: 'unchecked'
+  },
+  {
+    pa: 'Wilson Kumar',
+    title: 'Additional course materials available on request',
+    attachments: 'Course: Mathematics 101',
+    time: '15-Sep-2018 at 07:21 pm',
+    status: 'checked'
+  },
+  {
+    pa: 'Wilson Kumar',
+    title: 'No classes will be held on 25th Dec',
+    attachments: '',
+    time: '15-Sep-2018 at 07:21 pm',
+    status: 'unchecked'
+  },
+  {
+    pa: 'Wilson Kumar',
+    title: 'Additional course materials available on request',
+    attachments: 'Course: Mathematics 101',
+    time: '15-Sep-2018 at 07:21 pm',
+    status: 'unchecked'
+  },
+  {
+    pa: 'Wilson Kumar',
+    title: 'No classes will be held on 25th Dec',
+    attachments: '',
+    time: '15-Sep-2018 at 07:21 pm',
+    status: 'checked'
+  },
+];
+
+const announcementIcon = document.querySelectorAll('.icon-container img')[1]; 
+const announcementDropdown = document.getElementById('announcementDropdown');
+const announcementCard = document.getElementById('announcementCard');
+
+announcementIcon.addEventListener('click', () => {
+  const isOpen = announcementDropdown.style.display === 'block';
+  announcementDropdown.style.display = isOpen ? 'none' : 'block';
+  announcementIcon.style.filter = isOpen ? 'none' : 'brightness(0) invert(1)';
+});
+
+function renderAnnouncements() {
+  announcementCard.innerHTML = '';
+
+  announcements.forEach(item => {
+    const isRead = item.status === 'checked';
+    const icon = isRead
+      ? './quantum screen assets/icons/read-msg.svg'
+      : './quantum screen assets/icons/unread-msg.svg';
+
+    const backgroundColor = isRead ? '#ffffff' : '#FFF7D6';
+
+    const attachmentAndTime = `
+      <div class="attachment-time" style="display: flex; justify-content: space-between; align-items: center; color: #555; margin-top: 8px;">
+        ${item.attachments
+          ? `<div class="attachments" style="display: flex; align-items: center; gap: 4px;">
+              <img src="./quantum screen assets/icons/attachment.svg" alt="attachment" style="width: 14px;">
+              ${item.attachments}
+            </div>`
+          : `<div></div>`}
+        <div class="timestamp" style="font-size: 12px; color: #888;">${item.time}</div>
+      </div>
+    `;
+
+    const announcementItem = `
+      <div class="announcement-item" style="background-color: ${backgroundColor};">
+        <div class="pa-name" style="display: flex; justify-content: space-between; align-items: center;">
+          <span>PA: ${item.pa}</span>
+          <img class="icon-status" src="${icon}" alt="status-icon" style="width: 18px; height: 18px;">
+        </div>
+        <div class="announcement-title" style="font-weight: 600; margin: 8px 0;">${item.title}</div>
+        ${attachmentAndTime}
+      </div>
+    `;
+
+    announcementCard.innerHTML += announcementItem;
+  });
+}
+
+
+renderAnnouncements();
