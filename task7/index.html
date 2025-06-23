@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Draggable Box with Pointer Events</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      overflow: hidden; /* Prevent scrollbars */
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    // Create background div
+    const background = document.createElement('div');
+    Object.assign(background.style, {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: window.innerWidth + 'px',
+      height: window.innerHeight + 'px',
+      backgroundColor: '#f0f0f0',
+      overflow: 'hidden',
+    });
+    document.body.appendChild(background);
+
+    // Create child draggable div
+    const box = document.createElement('div');
+    Object.assign(box.style, {
+      width: '50px',
+      height: '50px',
+      backgroundColor: 'tomato',
+      position: 'absolute',
+      top: '100px',
+      left: '100px',
+      touchAction: 'none', // Prevent scrolling during touch drag
+      cursor: 'grab',
+    });
+    background.appendChild(box);
+
+    // Drag logic using pointer events
+    let isDragging = false;
+    let offsetX, offsetY;
+
+    box.addEventListener('pointerdown', (e) => {
+      isDragging = true;
+      offsetX = e.clientX - box.offsetLeft;
+      offsetY = e.clientY - box.offsetTop;
+      box.setPointerCapture(e.pointerId);
+      box.style.cursor = 'grabbing';
+    });
+
+    box.addEventListener('pointermove', (e) => {
+      if (!isDragging) return;
+
+      // Calculate new position
+      let newLeft = e.clientX - offsetX;
+      let newTop = e.clientY - offsetY;
+
+      // Constrain to bounds
+      const maxLeft = background.clientWidth - box.offsetWidth;
+      const maxTop = background.clientHeight - box.offsetHeight;
+      newLeft = Math.max(0, Math.min(newLeft, maxLeft));
+      newTop = Math.max(0, Math.min(newTop, maxTop));
+
+      box.style.left = newLeft + 'px';
+      box.style.top = newTop + 'px';
+    });
+
+    box.addEventListener('pointerup', (e) => {
+      isDragging = false;
+      box.releasePointerCapture(e.pointerId);
+      box.style.cursor = 'grab';
+    });
+
+    box.addEventListener('pointercancel', () => {
+      isDragging = false;
+      box.style.cursor = 'grab';
+    });
+
+    // Handle window resize
+    window.addEventListener('resize', () => {
+      background.style.width = window.innerWidth + 'px';
+      background.style.height = window.innerHeight + 'px';
+
+      // Keep box within bounds after resize
+      const maxLeft = background.clientWidth - box.offsetWidth;
+      const maxTop = background.clientHeight - box.offsetHeight;
+
+      let currentLeft = parseInt(box.style.left);
+      let currentTop = parseInt(box.style.top);
+
+      box.style.left = Math.min(currentLeft, maxLeft) + 'px';
+      box.style.top = Math.min(currentTop, maxTop) + 'px';
+    });
+  </script>
+</body>
+</html>

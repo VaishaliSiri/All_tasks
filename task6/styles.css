@@ -163,39 +163,6 @@ input::placeholder {
     padding-top: 34px;
 }
 
-.links{
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    /* bottom: 0px; */
-    text-align: center;
-    margin-bottom: 56px;
-    width: 100%;
-    color: #0000001F;
-}
-
-
-
-.links > a{
-    color: #1F7A54;
-    text-decoration: none;
-    font-family: 'QuickSand',sans-serif;
-}
-
-.end{
-    height: 40px;
-    display: flex;
-    flex-wrap: wrap;
-    background-color: #E0E1E1;
-    color: #616161;
-    justify-content: center;
-    align-items: center;
-    /* bottom: 0px; */
-    /* width:100%;  */
-    font-size: 12px;
-    padding: 0px 12px;
-}
-
 
 
 .preview{

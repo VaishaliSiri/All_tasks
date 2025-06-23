@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Draggable Box within Fixed Container</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .background {
+      width: 300px;
+      height: 300px;
+      background-color: black;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .box {
+      width: 50px;
+      height: 50px;
+      background-color: tomato;
+      position: absolute;
+      top: 100px;
+      left: 100px;
+      touch-action: none;
+      cursor: grab;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="background" id="background">
+    <div class="box" id="box"></div>
+  </div>
+
+  <script>
+    const background = document.getElementById('background');
+    const box = document.getElementById('box');
+
+    let isDragging = false;
+    let offsetX = 0;
+    let offsetY = 0;
+
+    box.addEventListener('pointerdown', (e) => {
+      isDragging = true;
+      offsetX = e.clientX - box.offsetLeft;
+      offsetY = e.clientY - box.offsetTop;
+      box.setPointerCapture(e.pointerId);
+      box.style.cursor = 'grabbing';
+    });
+
+    box.addEventListener('pointermove', (e) => {
+      if (!isDragging) return;
+
+      let newLeft = e.clientX - offsetX;
+      let newTop = e.clientY - offsetY;
+
+      const maxLeft = background.clientWidth - box.offsetWidth;
+      const maxTop = background.clientHeight - box.offsetHeight;
+
+      newLeft = Math.max(0, Math.min(newLeft, maxLeft));
+      newTop = Math.max(0, Math.min(newTop, maxTop));
+
+      box.style.left = newLeft + 'px';
+      box.style.top = newTop + 'px';
+    });
+
+    box.addEventListener('pointerup', (e) => {
+      isDragging = false;
+      box.releasePointerCapture(e.pointerId);
+      box.style.cursor = 'grab';
+    });
+
+    box.addEventListener('pointercancel', () => {
+      isDragging = false;
+      box.style.cursor = 'grab';
+    });
+
+    // Optional: ensure box stays inside container if window resizes and container changes size
+    const constrainBoxToContainer = () => {
+      const maxLeft = background.clientWidth - box.offsetWidth;
+      const maxTop = background.clientHeight - box.offsetHeight;
+
+      const currentLeft = parseInt(box.style.left, 10);
+      const currentTop = parseInt(box.style.top, 10);
+
+      box.style.left = Math.min(currentLeft, maxLeft) + 'px';
+      box.style.top = Math.min(currentTop, maxTop) + 'px';
+    };
+
+    window.addEventListener('resize', constrainBoxToContainer);
+  </script>
+
+</body>
+</html>

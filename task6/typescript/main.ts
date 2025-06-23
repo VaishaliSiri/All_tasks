@@ -1,4 +1,37 @@
-const courses = [
+(() => {
+interface Course {
+  image: string;
+  title: string;
+  subject: string;
+  grade: string;
+  units: number | null;
+  lessons: number | null;
+  topics: number | null;
+  className: string;
+  students: number | null;
+  dateRange: string | null;
+  fav: boolean;
+  iconsActive: boolean[];
+}
+
+interface Announcement {
+  pa: string;
+  title: string;
+  attachments: string;
+  course: string;
+  time: string;
+  status: 'checked' | 'unchecked';
+}
+
+interface Alert {
+  content: string;
+  std: string;
+  course: string;
+  time: string;
+  status: 'checked' | 'unchecked';
+}
+
+const courses: Course[] = [
   {
     image: "./quantum screen assets/images/imageMask.png",
     title: "Acceleration",
@@ -57,14 +90,14 @@ const courses = [
   }
 ];
 
-const iconPaths = [
+const iconPaths: string[] = [
   "./quantum screen assets/icons/preview.svg",
   "./quantum screen assets/icons/manage course.svg",
   "./quantum screen assets/icons/grade submissions.svg",
   "./quantum screen assets/icons/reports.svg"
 ];
 
-const container = document.getElementById("courseCards");
+const container = document.getElementById("courseCards") as HTMLElement;
 
 courses.forEach(course => {
   const gridItem = document.createElement("div");
@@ -85,7 +118,7 @@ courses.forEach(course => {
             <p style="font-size: 16px">${course.title}</p>
             ${course.fav
               ? `<img class="fav-icon" src="./quantum screen assets/icons/favourite.svg" alt="fav icon">`
-              : `<img class="fav-icon" src="./quantum screen assets/icons/favourite.svg" alt="fav icon" style="opacity:0.3;filter:grayscale(1)">`}
+              : `<img class="fav-icon" src="./quantum screen assets/icons/favourite.svg" alt="fav icon" style="opacity:0.3;">`}
           </div>
 
           <div style="font-size: 12px; margin-top: 7px;" class="grade">
@@ -99,20 +132,15 @@ courses.forEach(course => {
                   <p><b>${course.units}</b> Units</p>
                   <p><b>${course.lessons}</b> Lessons</p>
                   <p><b>${course.topics}</b> Topics</p>
-
                </div>`
             : ""}
 
           <div class="join_class">
-          <select >
-                    <option style="font-size: 16px" value="states">${course.className}</option>
-                </select>
             <div class="join_class_inner" style="opacity: ${course.className === "No Classes" ? "0.3" : "1"};">
-              
+              <p style="font-size: 16px">${course.className}</p>
             </div>
             <img src="./quantum screen assets/icons/arrow-down.svg" alt="">
           </div>
-
 
           ${course.students && course.dateRange
             ? `<div style="font-size: 12px; margin-top: 8px;" class="no_students">
@@ -141,11 +169,11 @@ courses.forEach(course => {
   container.appendChild(gridItem);
 });
 
+// --- Logic Functions ---
 
-
-function changeImage(selected) {
-  const img1 = document.getElementById('myImage');
-  const img2 = document.getElementById('myImage1');
+function changeImage(selected: string): void {
+  const img1 = document.getElementById('myImage') as HTMLImageElement;
+  const img2 = document.getElementById('myImage1') as HTMLImageElement;
 
   if (selected === 'district') {
     img1.src = "./quantum screen assets/icons/radio-button-on.svg";
@@ -156,27 +184,22 @@ function changeImage(selected) {
   }
 }
 
-function remember(){
-    var rem_image = document.getElementById('no_remember'); 
-    if(rem_image.src.match('checkbox-checked')){
-        rem_image.src = "./quantum screen assets/icons/checkbox-unchecked.svg"
-    }else{
-        rem_image.src = "./quantum screen assets/icons/checkbox-checked.svg"
-    }
+function remember(): void {
+  const remImage = document.getElementById('no_remember') as HTMLImageElement;
+  if (remImage.src.indexOf('checkbox-checked')!=-1) {
+    remImage.src = "./quantum screen assets/icons/checkbox-unchecked.svg";
+  } else {
+    remImage.src = "./quantum screen assets/icons/checkbox-checked.svg";
+  }
 }
 
-function showPassword(){
-    var pass = document.getElementById("showPass");
-    if(pass.type === 'password'){
-        pass.type = "text";
-    }else{
-        pass.type = "password";
-    }
+function showPassword(): void {
+  const pass = document.getElementById("showPass") as HTMLInputElement;
+  pass.type = pass.type === 'password' ? 'text' : 'password';
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
   const links = document.querySelectorAll(".dash > a");
-
   links.forEach(link => {
     link.addEventListener("click", function () {
       links.forEach(l => l.classList.remove("active"));
@@ -186,25 +209,22 @@ document.addEventListener("DOMContentLoaded", function () {
   toggleSidebar();
 });
 
+const courseDiv = document.querySelector('.course') as HTMLElement;
+const classesDiv = document.querySelector('.classes') as HTMLElement;
 
-const courseDiv = document.querySelector('.course');
-  const classesDiv = document.querySelector('.classes');
+courseDiv.addEventListener('click', () => {
+  courseDiv.classList.add('active');
+  classesDiv.classList.remove('active');
+});
 
-  courseDiv.addEventListener('click', () => {
-    courseDiv.classList.add('active');
-    classesDiv.classList.remove('active');
-  });
+classesDiv.addEventListener('click', () => {
+  classesDiv.classList.add('active');
+  courseDiv.classList.remove('active');
+});
 
-  classesDiv.addEventListener('click', () => {
-    classesDiv.classList.add('active');
-    courseDiv.classList.remove('active');
-  });
-
-function toggleSidebar() {
-
-  const sidebar = document.getElementById("sidebar");
-  // const hamburger = document.querySelector(".hamburger");
-  const hamburger = document.getElementById("hamburger");
+function toggleSidebar(): void {
+  const sidebar = document.getElementById("sidebar") as HTMLElement;
+  const hamburger = document.getElementById("hamburger") as HTMLElement;
 
   hamburger.addEventListener("mouseenter", () => {
     sidebar.style.display = "block";
@@ -215,76 +235,9 @@ function toggleSidebar() {
     sidebar.style.display = "none";
     hamburger.classList.remove("hamburger-active");
   });
-
 }
 
-
-
-function toggleDropdown(header) {
-  const dropdown = header.parentElement;
-  const items = header.nextElementSibling;
-  const arrowImg = header.querySelector('.arrow1 img');
-  const isVisible = items.style.display === "block";
-
-  document.querySelectorAll('.dropdown-items').forEach(item => item.style.display = "none");
-  document.querySelectorAll('.arrow1 img').forEach(img => img.src = "./quantum screen assets/icons/down-arrow.svg");
-  document.querySelectorAll('.dropdown').forEach(drop => drop.classList.remove('active-dropdown'));
-
-  if (!isVisible) {
-    items.style.display = "block";
-    arrowImg.src = "./quantum screen assets/icons/up-arrow.svg";
-    dropdown.classList.add('active-dropdown');
-  }
-}
-
-window.addEventListener("DOMContentLoaded", function () {
-  const cards = document.querySelectorAll(".grid-item");
-
-  cards.forEach(card => {
-    const dateRangeElem = card.querySelector(".no_students p:nth-child(4)");
-    if (!dateRangeElem) return;
-
-    const dateRangeText = dateRangeElem.innerText;
-    const matches = dateRangeText.match(/(\d{2}-[A-Za-z]{3}-\d{4})/g);
-    if (!matches || matches.length < 2) return;
-
-    const startDate = new Date(matches[0]);
-    const endDate = new Date(matches[1]);
-    const today = new Date();
-
-    // Duration in months
-    const yearDiff = (endDate.getFullYear() - startDate.getFullYear()) * 12 +
-                     (endDate.getMonth() - startDate.getMonth());
-
-    // Show EXPIRED badge if > 12 months and course has ended
-    if (yearDiff >= 12 && endDate < today) {
-      const badge = document.createElement("div");
-      badge.className = "expired-badge";
-      badge.innerText = "EXPIRED";
-      badge.style.cssText = `
-        position: absolute;
-        background-color: #FFE4E6;
-        color: #D80000;
-        font-size: 10px;
-        font-weight: bold;
-        width: 52px;
-        height: 18px;
-        top: 0;
-        left: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 0;
-        text-align: center;
-      `;
-      card.style.position = "relative";
-      card.appendChild(badge);
-    }
-  });
-});
-
-
-const announcements = [
+const announcements: Announcement[] = [
   {
     pa: 'Wilson Kumar',
     title: 'No classes will be held on 21st Nov',
@@ -335,75 +288,7 @@ const announcements = [
   }
 ];
 
-
-
-
-
-function renderAnnouncements() {
-  const announcementWrapper = document.querySelector('.announcement-wrapper');
-  const announcementIcon = document.querySelectorAll('.icon-container img')[1];
-  const announcementDropdown = document.getElementById('announcementDropdown');
-
-  let announcementTimeout;
-
-  announcementWrapper.addEventListener('mouseenter', () => {
-    clearTimeout(announcementTimeout);
-    announcementDropdown.style.display = 'block';
-    announcementIcon.style.filter = 'brightness(0) invert(1)';
-  });
-
-  announcementWrapper.addEventListener('mouseleave', () => {
-    announcementTimeout = setTimeout(() => {
-      announcementDropdown.style.display = 'none';
-      announcementIcon.style.filter = 'none';
-    }, 150); // adjust delay as needed
-  });
-
-  announcementCard.innerHTML = '';
-
-  announcements.forEach(item => {
-    const isRead = item.status === 'checked';
-    const icon = isRead
-      ? './quantum screen assets/icons/read-msg.svg'
-      : './quantum screen assets/icons/unread-msg.svg';
-
-    const backgroundColor = isRead ? '#ffffff' : '#FFF7D6';
-
-    const courseInfo = item.course
-      ? `<div class="course-name" style="font-size: 13px; color: #444;">Course: ${item.course}</div>`
-      : '';
-
-    const attachmentAndTime = `
-      <div class="attachment-time" style="display: flex; justify-content: space-between; align-items: center; color: #555; margin-top: 8px;">
-        ${item.attachments
-          ? `<div class="attachments" style="display: flex; align-items: center; gap: 4px;">
-              <img src="./quantum screen assets/icons/attachment.svg" alt="attachment" style="width: 14px;">
-              ${item.attachments}
-            </div>`
-          : `<div></div>`}
-        <div class="timestamp" style="font-size: 12px; color: #888;">${item.time}</div>
-      </div>
-    `;
-
-    const announcementItem = `
-      <div class="announcement-item" style="background-color: ${backgroundColor};">
-        <div class="pa-name" style="display: flex; justify-content: space-between; align-items: center;">
-          <span>PA: ${item.pa}</span>
-          <img class="icon-status" src="${icon}" alt="status-icon" style="width: 18px; height: 18px;">
-        </div>
-        <div class="announcement-title" style="font-weight: 600; margin: 8px 0">${item.title}</div>
-        ${courseInfo}
-        ${attachmentAndTime}
-      </div>
-    `;
-
-    announcementCard.innerHTML += announcementItem;
-  });
-}
-
-renderAnnouncements();
-
-const alerts = [
+const alerts: Alert[] = [
   {
     content: 'License for Introduction to Algebra has been assigned to your school',
     std: '',
@@ -455,13 +340,83 @@ const alerts = [
   }
 ];
 
+// Render Announcements
+function renderAnnouncements(): void {
+  const announcementWrapper = document.querySelector('.announcement-wrapper') as HTMLElement | null;
+  const announcementIcon = document.querySelectorAll('.icon-container img')[1] as HTMLImageElement | undefined;
+  const announcementDropdown = document.getElementById('announcementDropdown') as HTMLElement | null;
+  const announcementCard = document.getElementById('announcementCard') as HTMLElement | null;
 
-function renderAlerts() {
-  const alertWrapper = document.querySelector('.alert-wrapper');
-  const alertIcon = document.querySelectorAll('.icon-container img')[0];
-  const alertDropdown = document.getElementById('announcementDropdown1');
+  if (!announcementWrapper || !announcementIcon || !announcementDropdown || !announcementCard) return;
 
-  let alertTimeout;
+  let announcementTimeout: number;
+
+  announcementWrapper.addEventListener('mouseenter', () => {
+    clearTimeout(announcementTimeout);
+    announcementDropdown.style.display = 'block';
+    announcementIcon.style.filter = 'brightness(0) invert(1)';
+  });
+
+  announcementWrapper.addEventListener('mouseleave', () => {
+    announcementTimeout = window.setTimeout(() => {
+      announcementDropdown.style.display = 'none';
+      announcementIcon.style.filter = 'none';
+    }, 150);
+  });
+
+  announcementCard.innerHTML = '';
+
+  announcements.forEach(item => {
+    const isRead = item.status === 'checked';
+    const icon = isRead
+      ? './quantum screen assets/icons/read-msg.svg'
+      : './quantum screen assets/icons/unread-msg.svg';
+
+    const backgroundColor = isRead ? '#ffffff' : '#FFF7D6';
+
+    const courseInfo = item.course
+      ? `<div class="course-name" style="font-size: 13px; color: #444;">Course: ${item.course}</div>`
+      : '';
+
+    const attachmentAndTime = `
+      <div class="attachment-time" style="display: flex; justify-content: space-between; align-items: center; color: #555; margin-top: 8px;">
+        ${item.attachments
+          ? `<div class="attachments" style="display: flex; align-items: center; gap: 4px;">
+              <img src="./quantum screen assets/icons/attachment.svg" alt="attachment" style="width: 14px;">
+              ${item.attachments}
+            </div>`
+          : `<div></div>`}
+        <div class="timestamp" style="font-size: 12px; color: #888;">${item.time}</div>
+      </div>
+    `;
+
+    const announcementItem = `
+      <div class="announcement-item" style="background-color: ${backgroundColor};">
+        <div class="pa-name" style="display: flex; justify-content: space-between; align-items: center;">
+          <span>PA: ${item.pa}</span>
+          <img class="icon-status" src="${icon}" alt="status-icon" style="width: 18px; height: 18px;">
+        </div>
+        <div class="announcement-title" style="font-weight: 600; margin: 8px 0">${item.title}</div>
+        ${courseInfo}
+        ${attachmentAndTime}
+      </div>
+    `;
+
+    announcementCard.innerHTML += announcementItem;
+  });
+}
+
+// Render Alerts
+
+function renderAlerts(): void {
+  const alertWrapper = document.querySelector('.alert-wrapper') as HTMLElement | null;
+  const alertIcon = document.querySelectorAll('.icon-container img')[0] as HTMLImageElement | undefined;
+  const alertDropdown = document.getElementById('announcementDropdown1') as HTMLElement | null;
+  const alertCard = document.getElementById('announcementCard1') as HTMLElement | null;
+
+  if (!alertWrapper || !alertIcon || !alertDropdown || !alertCard) return;
+
+  let alertTimeout: number;
 
   alertWrapper.addEventListener('mouseenter', () => {
     clearTimeout(alertTimeout);
@@ -470,46 +425,47 @@ function renderAlerts() {
   });
 
   alertWrapper.addEventListener('mouseleave', () => {
-    alertTimeout = setTimeout(() => {
+    alertTimeout = window.setTimeout(() => {
       alertDropdown.style.display = 'none';
       alertIcon.style.filter = 'none';
-    }, 150); // adjust delay as needed
+    }, 150);
   });
 
-  announcementCard1.innerHTML = '';
+  alertCard.innerHTML = '';
 
-  alerts.forEach(item1 => {
-    const isRead1 = item1.status === 'checked';
-    const icon1 = isRead1
+  alerts.forEach(item => {
+    const isRead = item.status === 'checked';
+    const icon = isRead
       ? './quantum screen assets/icons/read-msg.svg'
       : './quantum screen assets/icons/unread-msg.svg';
 
-    const backgroundColor1 = isRead1 ? '#ffffff' : '#FFF7D6';
+    const backgroundColor = isRead ? '#ffffff' : '#FFF7D6';
 
-    const courseInfo1 = item1.course
-      ? `<div class="course-name" style="font-size: 13px; color: #444;">Course: ${item1.course}</div>`
-      : item1.std
-      ? `<div class="course-name" style="font-size: 13px; color: #444;">Course: ${item1.std}</div>`
+    const courseInfo = item.course
+      ? `<div class="course-name" style="font-size: 13px; color: #444;">Course: ${item.course}</div>`
+      : item.std
+      ? `<div class="course-name" style="font-size: 13px; color: #444;">Course: ${item.std}</div>`
       : '';
 
     const alertItem = `
-      <div class="announcement-item" style="background-color: ${backgroundColor1};">
+      <div class="announcement-item" style="background-color: ${backgroundColor};">
         <div class="pa-name" style="display: flex; justify-content: space-between; align-items: center;">
-          <span>${item1.content}</span>
-          <img class="icon-status" src="${icon1}" alt="status-icon" style="width: 18px; height: 18px;">
+          <span>${item.content}</span>
+          <img class="icon-status" src="${icon}" alt="status-icon" style="width: 18px; height: 18px;">
         </div>
-        ${courseInfo1}
+        ${courseInfo}
         <div class="attachment-time" style="display: flex; justify-content: flex-end; color: #888; font-size: 12px; margin-top: 8px;">
-          ${item1.time}
+          ${item.time}
         </div>
       </div>
     `;
 
-    announcementCard1.innerHTML += alertItem;
+    alertCard.innerHTML += alertItem;
   });
 }
 
 
+renderAnnouncements();
 renderAlerts();
 
-
+})();

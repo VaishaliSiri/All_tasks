@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles.css">
+     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container" >
+        <div class="header">
+            <img class="img1header" src="./quantum screen assets/header pattern image.png" alt="">
+            <img src="./quantum screen assets/icons/logo used in header.svg" alt="" class="overlay">
+        </div>
+        <div class="middle">
+
+        
+        <div class="content">
+            <div class="login">
+                <img src="./quantum screen assets/icons/back.svg" alt="">
+                <p>Log in with Quantum</p>
+            </div>
+            <div class="district">
+                <img id="myImage" onclick="changeImage('district')" src="./quantum screen assets/icons/radio-button-on.svg" class="img1" alt="">
+                <p>District</p>
+                <img id="myImage1" onclick="changeImage('independent')" class="img1" src="./quantum screen assets/icons/radio-button-off.svg" alt="">
+                <p>Independent School</p>
+            </div>
+
+            <p style="height:15px;font-size: small;color: #666666; padding-top: 30px;">State*</p>
+            <div class="arrow">
+                <select id="state" name="state">
+                    <option value="states">Alabama</option>
+                </select>
+                <img class="arrows"src="./quantum screen assets/icons/arrow-down.svg" alt="">
+            </div>
+            <p style="height:15px;font-size: small;color: #666666; padding-top: 30px;">District*</p>
+            <div class="arrow">
+                <select id="state" name="state">
+                    <option value="states">Alabama School District</option>
+                </select>
+                <img src="./quantum screen assets/icons/arrow-down.svg" alt="">
+            </div>
+            <div class="username">
+                <input class="input1" type="text" placeholder="Username/Email ID*">
+                <div class="down"><a class="forget_username" href="">FORGET USERNAME?</a></div>   
+            </div>
+            <div class="pass_cont">
+               <div class="for_pass">
+                    <input class="input2" id="showPass" type="password" placeholder="Password*">
+                    <img class="preview"  onclick="showPassword()" src="./quantum screen assets/icons/preview.svg" alt="">
+               </div>  
+                <div class="forget_pass"><a class="forget_username" href="">FORGET PASSWORD?</a></div>   
+            </div>
+            <div class="remember">
+                <img id="no_remember" onclick="remember()" src="./quantum screen assets/icons/checkbox-checked.svg" alt="">
+                <label class="rem" for="">Remember Me</label>
+            </div>
+            <div class="btn_container"> <button class="btn">LOG IN</button></div>
+           
+        </div>
+        </div>
+
+        <!-- <div class="footer">   -->
+            <div class="footer_part">
+            <div class="about_contact_text">
+              <a href="#"><span>About</span></a>
+              <span class="line">|</span>
+              <a href="#"><span>Contact Us</span></a>
+            </div>
+            <div class="footer">
+              <img src="./quantum screen assets/icons/logo used in footer.svg" alt="" class="footer_logo">
+              <span class="footer_span">|</span>
+              <span class="copyright">Copyright © 2020-2021</span>
+              <span class="company">Zeus Systems Pvt. Ltd.</span>
+            </div>
+          </div>
+        </div>
+        <!-- </div> -->
+    </div>
+    <script src="./script.js"></script>
+</body>
+</html>

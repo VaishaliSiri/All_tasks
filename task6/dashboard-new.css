@@ -10,18 +10,16 @@
     align-items: center;
 }
 
-
 .chapter {
   display: flex;
   gap: 6px;
 }
 
-
 .dash > a {
   text-decoration: none;
   color: #3FD28B;
   padding-bottom: 4px;
-  position: relative; /* required for ::after to position correctly */
+  position: relative;
   font-size: 14px;
 }
 
@@ -32,7 +30,7 @@
 .dash > a.active::after {
   content: '';
   position: absolute;
-  bottom: -12px; /* move underline niche */
+  bottom: -12px;
   left: 0;
   width: 100%;
   height: 5px;
@@ -46,8 +44,8 @@
     padding-right: 24px;
     padding-top: 24px;
 }
+
 .choose{
-    /* width: 100%; */
     display: grid;
     grid-template-columns: 1fr 1fr;
     height: 64px;
@@ -57,7 +55,6 @@
     justify-content: center;
     text-align: center;
     align-items: center;
-    /* position: relative; */
 }
 
 .classes,.course{
@@ -116,16 +113,21 @@
     color: black;
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
     justify-content: center;
     width: 476px;
     height: 246px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.grid-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
 }
 
 .card-up{
     display: flex;
     border-bottom: 1px solid #cccccc;
-    /* padding-right: 24px; */
     padding-bottom: 12px;
 }
 
@@ -138,8 +140,8 @@
 .ur_options{
     display: flex;
     padding-left: 24px;
-    gap: 90px;
-    /* justify-content: center; */
+    justify-content: space-between;
+    gap: 100px;
 }
 
 .grade,.chapter,.join_class,.no_students{
@@ -155,8 +157,6 @@
     margin-top: 18px;
     font-weight: 500;
 }
-
-
 
 .card-down{
     display: flex;
@@ -181,43 +181,10 @@
     right: 16px;
 }
 
-@media (max-width:1200px){
-  .grid-item{
-    width: 571px;
-    height: 246px;
-  }
-    .details{
-        grid-template-columns: 1fr;
-        /* justify-content: center; */
-    }
-    .details > div{
-        /* width: 571px;
-        height: 246px; */
-        display: flex;
-        flex-direction: column;
-    }
-    .dash_content{
-        height:90%;
-    }
-    /* .dono-div{
-      width: 100%;
-    } */
-    .dash > a{
-        display: none;
-    }
-    .ur_options{
-      gap: 132px;
-    }
-    .for_content{
-      width: 100%;
-    }
-}
-
 .green {
   color: #1F7A54;
   font-weight: 500;
 }
-
 
 .icon-container {
   position: relative;
@@ -262,20 +229,13 @@
 .hamburger {
     display: none;
     cursor: pointer;
-    /* margin-left: 16px; */
-}
-
-@media (max-width: 1200px) {
-    .hamburger {
-        display: block;
-    }
 }
 
 /* Sidebar styling */
 .sidebar {
   display: none;
   position: absolute;
-  top: 56px; /* below header */
+  top: 56px;
   right: 0;
   background-color: white;
   width: 240px;
@@ -319,19 +279,6 @@
   color: #1F7A54;
 }
 
-/* .arrow {
-  font-size: 12px;
-} */
-
-/* Show hamburger only on mobile */
-@media (max-width: 1200px) {
-  .hamburger {
-    display: block;
-    position: relative;
-    z-index: 1000;
-  }
-}
-
 .arrow1 img {
   width: 12px;
   vertical-align: middle;
@@ -347,14 +294,13 @@
 
 .arrow1{
   line-height: 0;
-   font-size: 0;          /* Prevent text baseline issues */
+  font-size: 0;
   display: flex;
   align-items: center;
 }
 
-
 .dropdown.active-dropdown {
-  background-color: #f1f1f1; /* Gray background for entire dropdown */
+  background-color: #f1f1f1;
 }
 
 .dropdown-items a.active-item {
@@ -363,10 +309,8 @@
 }
 
 .hamburger-active img {
-  filter: brightness(0) invert(1); /* turns icon white */
+  filter: brightness(0) invert(1);
 }
-
-
 
 .pa-name {
   font-weight: bold;
@@ -427,7 +371,6 @@
   margin: 2px 0;
 }
 
-
 .attachments img {
   width: 6px;
   height: 13px;
@@ -446,14 +389,11 @@
 
 .actions {
   display: flex;
-  /* justify-content: space-around; */
-  /* padding: 10px; */
   border-top: 1px solid #ccc;
   background-color: #f9f9f9;
   height: 44px;
   font-size: 14px;
   font-family: 'QuickSand',sans-serif;
-  /* width: 100%; */
 }
 
 .actions button {
@@ -478,6 +418,327 @@
   margin: 6px 0;
 }
 
+/* Tablet responsiveness - 1200px and below */
+@media (max-width: 1200px) {
+  .grid-item {
+    width: 571px;
+    height: 246px;
+  }
+  
+  .details {
+    grid-template-columns: 1fr;
+  }
+  
+  .details > div {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .dash_content {
+    height: 90%;
+  }
+  
+  .dash > a {
+    display: none;
+  }
+  
+  .ur_options {
+    gap: 132px;
+  }
+  
+  .for_content {
+    width: 100%;
+  }
+  
+  .hamburger {
+    display: block;
+    position: relative;
+    z-index: 1000;
+  }
+}
 
+/* Mobile responsiveness - 650px and below */
+@media (max-width: 650px) {
+  /* Header and navigation adjustments */
+  .dash {
+    gap: 16px;
+    padding-top: 12px;
+    right: 16px;
+    font-size: 13px;
+  }
+  
+  .choice {
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 16px;
+  }
+  
+  .choose {
+    height: 56px;
+    border-radius: 4px;
+  }
+  
+  .classes, .course {
+    gap: 6px;
+    font-size: 14px;
+  }
+  
+  .course_name {
+    padding-left: 16px;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  
+  .sort {
+    padding-right: 16px;
+  }
+  
+  /* Main content grid adjustments */
+  .details {
+    margin-top: 12px;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 0 16px;
+  }
+  
+  .grid-item {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: 200px;
+    margin: 0;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  }
+  
+  .grid-item:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  }
+  
+  .dono-div {
+    padding: 16px 12px 8px 16px;
+  }
+  
+  .card-up {
+    padding-bottom: 8px;
+    margin-bottom: 4px;
+  }
+  
+  .card-down {
+    padding-top: 12px;justify-content: center;
+    gap: 8px;
+  }
+  
+  .ur_options {
+    padding-left: 16px;
+    gap: 40px;
+    flex-wrap: wrap;
+    font-size: 13px;
+    justify-content: space-between;
+  }
+  
+  .topic {
+    margin-left: 12px;
+    width: 100%;
+    max-width: 200px;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  
+  .grade, .chapter, .join_class, .no_students {
+    margin-left: 12px;
+    gap: 4px;
+    font-size: 13px;
+  }
+  
+  .join_class {
+    margin-top: 12px;
+  }
+  
+  .fav-icon {
+    right: 12px;
+    top: 12px;
+  }
+  
+  /* Sidebar adjustments for mobile */
+  .sidebar {
+    width: 200px;
+    top: 48px;
+    right: 8px;
+    border-radius: 8px;
+  }
+  
+  .sidebar a {
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+  
+  .dropdown-header {
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+  
+  .dropdown-items {
+    padding-left: 32px;
+  }
+  
+  .dropdown-items a {
+    font-size: 12px;
+  }
+  
+  /* Announcement dropdown adjustments */
+  .announcement-dropdown {
+    width: calc(100vw - 32px);
+    max-width: 280px;
+    right: -8px;
+    top: 32px;
+    border-radius: 8px;
+  }
+  
+  .announcement-card {
+    max-height: 400px;
+  }
+  
+  .announcement-item {
+    padding: 12px 12px;
+  }
+  
+  .announcement-title {
+    font-size: 13px;
+  }
+  
+  .announcement-item p {
+    font-size: 13px;
+  }
+  
+  .files, .course-name {
+    font-size: 11px;
+  }
+  
+  .timestamp {
+    font-size: 11px;
+  }
+  
+  .actions {
+    height: 40px;
+    font-size: 13px;
+  }
+  
+  .actions button {
+    padding: 8px;
+  }
+  
+  /* Icon and badge adjustments */
+  .icon-container img {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .badge, .badge1 {
+    font-size: 9px;
+    padding: 1px 4px;
+    top: -4px;
+    right: -4px;
+  }
+  
+  /* Footer adjustments */
+  .footer {
+    font-size: 10px;
+    padding: 0 4px;
+  }
+  
+  .footer img {
+    width: 14px;
+  }
+  
+  .copyright, .company {
+    padding-right: 6px;
+  }
+  
+  /* Improved touch targets */
+  .classes, .course {
+    min-height: 40px;
+    padding: 8px;
+  }
+  
+  .hamburger {
+    padding: 8px;
+  }
+  
+  /* Better spacing for mobile */
+  .dash_content {
+    height: auto;
+    min-height: calc(100vh - 120px);
+  }
+  
+  .center1 {
+    padding: 8px 0;
+  }
+}
 
-
+/* Extra small devices - 480px and below */
+@media (max-width: 480px) {
+  .dash {
+    gap: 12px;
+    right: 12px;
+  }
+  
+  .choice {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  
+  .course_name {
+    padding-left: 12px;
+    font-size: 15px;
+  }
+  
+  .sort {
+    padding-right: 12px;
+  }
+  
+  .details {
+    padding: 0 12px;
+    gap: 12px;
+  }
+  
+  .grid-item {
+    min-height: 180px;
+  }
+  
+  .dono-div {
+    padding: 12px 8px 6px 12px;
+  }
+  
+  .ur_options {
+    /* padding-left: 12px; */
+    gap: 20px;
+    font-size: 12px;
+    justify-content: center;
+  }
+  
+  .topic {
+    font-size: 14px;
+    margin-left: 8px;
+  }
+  
+  .grade, .chapter, .join_class, .no_students {
+    margin-left: 8px;
+    font-size: 12px;
+  }
+  
+  .fav-icon {
+    right: 8px;
+    top: 8px;
+  }
+  
+  .announcement-dropdown {
+    width: calc(100vw - 24px);
+    right: -12px;
+  }
+  
+  .sidebar {
+    width: calc(100vw - 40px);
+    right: 12px;
+  }
+}
